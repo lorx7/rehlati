@@ -3,166 +3,262 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>رحلتي – إدارة رحلة المريض</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;700&display=swap">
+<title>رحلتي – رفيقك داخل المستشفى</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap">
 <style>
-:root{--bg:#EEF4F2;--surface:#fff;--ink:#12302A;--muted:#5B7570;--brand:#0B6B55;--brand-ink:#fff;--line:#D3E2DD;--now:#E8A33D;--now-bg:#FFF3DC;
+:root{--bg:#F2F6F5;--surface:#fff;--ink:#0F2A25;--muted:#587069;--brand:#0A5C4C;--brand2:#12806A;--brand-ink:#fff;--line:#DCE8E4;--gold:#E8A33D;--gold-bg:#FFF4DE;--sh:0 1px 2px rgba(10,60,50,.06),0 8px 24px rgba(10,60,50,.07);
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0E1B18;--surface:#162824;--ink:#E4F0EC;--muted:#8FAAA3;--brand:#3CC1A0;--brand-ink:#08211B;--line:#27413B;--now:#F0B35A;--now-bg:#3A2E14;color-scheme:dark}}
-:root[data-theme="dark"]{--bg:#0E1B18;--surface:#162824;--ink:#E4F0EC;--muted:#8FAAA3;--brand:#3CC1A0;--brand-ink:#08211B;--line:#27413B;--now:#F0B35A;--now-bg:#3A2E14;color-scheme:dark}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0B1614;--surface:#13241F;--ink:#E6F2EE;--muted:#8FAAA3;--brand:#0E7A65;--brand2:#18a085;--line:#244039;--gold:#F0B35A;--gold-bg:#3A2E14;--sh:0 1px 2px rgba(0,0,0,.4);color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0B1614;--surface:#13241F;--ink:#E6F2EE;--muted:#8FAAA3;--brand:#0E7A65;--brand2:#18a085;--line:#244039;--gold:#F0B35A;--gold-bg:#3A2E14;--sh:0 1px 2px rgba(0,0,0,.4);color-scheme:dark}
 *{box-sizing:border-box}
 html{font-size:16px;scroll-padding-top:env(safe-area-inset-top,0px)}
 html.big{font-size:19px}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:"IBM Plex Sans Arabic",Tahoma,sans-serif;line-height:1.7}
-main{max-width:460px;margin:0 auto;padding:16px 16px calc(96px + env(safe-area-inset-bottom,0px))}
-.top{display:flex;justify-content:space-between;align-items:center}
-h1{font-size:1.6rem;margin:4px 0;font-weight:700}
-h2{font-size:1.15rem;margin:0 0 4px}
-.lead{color:var(--muted);margin:0 0 16px;font-size:.9rem}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:16px;margin-bottom:12px}
-.now{background:var(--now-bg);border:1.5px solid var(--now);border-radius:14px;padding:14px;margin-bottom:14px}
-.now p{margin:0;color:var(--muted);font-size:.88rem}
-.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
-.stat{background:var(--surface);border-radius:10px;padding:8px 12px}
-.stat b{display:block;font-size:1.3rem}
-.stat span{font-size:.75rem;color:var(--muted)}
+main{max-width:480px;margin:0 auto;padding:14px 16px calc(100px + env(safe-area-inset-bottom,0px))}
+header{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.logo{width:42px;height:42px;border-radius:13px;background:linear-gradient(135deg,var(--brand),var(--brand2));display:grid;place-items:center;flex:none}
+.logo svg{width:24px;height:24px;stroke:#fff;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+header b{display:block;font-size:1.15rem;line-height:1.2}
+header small{color:var(--muted);font-size:.72rem}
+header button{margin:0}
+h2{font-size:1.1rem;margin:0 0 2px;font-weight:700}
+.sub{color:var(--muted);font-size:.84rem;margin:0 0 14px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:16px;margin-bottom:14px;box-shadow:var(--sh)}
+.greet{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:12px}
+.greet h1{margin:0;font-size:1.35rem;font-weight:700}
+.greet span{font-size:.8rem;color:var(--muted)}
+.hero{background:radial-gradient(circle at 12% 0%,rgba(255,255,255,.16),transparent 45%),linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;border-radius:22px;padding:18px;margin-bottom:14px;box-shadow:var(--sh)}
+.hero .lab{font-size:.74rem;opacity:.85;letter-spacing:.02em}
+.hero h2{font-size:1.5rem;margin:2px 0 6px}
+.hero p{margin:0;font-size:.9rem;opacity:.95}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.chip{background:rgba(255,255,255,.18);border-radius:20px;padding:0 10px;font-size:.74rem}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.tile{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.22);border-radius:14px;padding:8px 12px}
+.tile b{display:block;font-size:1.35rem;line-height:1.3}
+.tile span{font-size:.72rem;opacity:.9}
+.prog{display:flex;justify-content:space-between;font-size:.78rem;color:var(--muted);margin-bottom:6px}
+.bar{height:8px;background:var(--line);border-radius:8px;overflow:hidden;margin-bottom:16px}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--brand),var(--gold));transition:width .5s;border-radius:8px}
 ol{list-style:none;margin:0;padding:0}
 li.s{display:flex;gap:12px;position:relative;padding-bottom:14px}
 li.s:last-child{padding-bottom:0}
-li.s::before{content:"";position:absolute;inset-inline-start:13px;top:28px;bottom:0;width:2px;background:var(--line)}
+li.s::before{content:"";position:absolute;inset-inline-start:15px;top:32px;bottom:0;width:2px;background:var(--line)}
 li.s:last-child::before{display:none}
 li.s.done::before{background:var(--brand)}
-.dot{flex:none;width:28px;height:28px;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center;font-size:.8rem;background:var(--surface);z-index:1}
-.done .dot{background:var(--brand);border-color:var(--brand);color:var(--brand-ink)}
-.cur .dot{border-color:var(--now);background:var(--now);color:#12302A}
-li.s:not(.done):not(.cur){opacity:.55}
-.bar{height:8px;background:var(--line);border-radius:8px;overflow:hidden;margin:0 0 14px}
-.bar i{display:block;height:100%;background:var(--brand);transition:width .4s}
+.dot{flex:none;width:32px;height:32px;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center;font-size:.9rem;background:var(--surface);z-index:1}
+.done .dot{background:var(--brand);border-color:var(--brand);color:#fff;font-size:.8rem}
+.cur .dot{border-color:var(--gold);background:var(--gold-bg);box-shadow:0 0 0 4px rgba(232,163,61,.22)}
+li.s b{font-size:.95rem}li.s small{display:block;color:var(--muted);font-size:.76rem;line-height:1.4}
+li.s:not(.done):not(.cur){opacity:.5}
 .btns{display:flex;gap:10px;margin-top:16px}
-button{font:inherit;font-weight:500;border:0;border-radius:12px;padding:10px 14px;cursor:pointer;min-height:44px;color:inherit}
-button:focus-visible{outline:3px solid var(--now);outline-offset:2px}
-.primary{background:var(--brand);color:var(--brand-ink);flex:1}
+button{font:inherit;font-weight:500;border:0;border-radius:14px;padding:10px 14px;cursor:pointer;min-height:46px;color:inherit}
+button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.primary{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;flex:1}
 .ghost{background:transparent;border:1px solid var(--line)}
-.sm{min-height:36px;padding:4px 12px;font-size:.85rem}
-.note{font-size:.75rem;color:var(--muted);text-align:center;margin-top:12px}
+.sm{min-height:36px;padding:4px 12px;font-size:.82rem;border-radius:10px}
+.log{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px dashed var(--line);font-size:.86rem}
+.log:last-child{border:0}
+.log time{flex:none;color:var(--muted);font-size:.72rem;width:3.6rem;padding-top:2px}
 .view{display:none}.view.on{display:block}
-nav{position:fixed;inset-inline:0;bottom:0;background:var(--surface);border-top:1px solid var(--line);display:flex;justify-content:center;padding:6px 6px calc(6px + env(safe-area-inset-bottom,0px));z-index:5}
-nav button{background:none;flex:1;max-width:92px;font-size:.72rem;padding:4px 2px;border-radius:10px;display:flex;flex-direction:column;align-items:center;gap:0;line-height:1.4;color:var(--muted)}
-nav button span{font-size:1.2rem}
-nav button.on{background:var(--now-bg);color:var(--ink)}
-#toast{position:fixed;top:calc(10px + env(safe-area-inset-top,0px));inset-inline:12px;max-width:430px;margin:0 auto;background:var(--brand);color:var(--brand-ink);border-radius:14px;padding:10px 14px;font-weight:500;transform:translateY(-140%);transition:transform .35s;z-index:9}
+.note{font-size:.72rem;color:var(--muted);text-align:center;margin:6px 0}
+nav{position:fixed;inset-inline:0;bottom:0;background:color-mix(in srgb,var(--surface) 92%,transparent);backdrop-filter:blur(12px);border-top:1px solid var(--line);display:flex;justify-content:center;padding:6px 8px calc(6px + env(safe-area-inset-bottom,0px));z-index:5}
+nav button{background:none;flex:1;max-width:96px;font-size:.68rem;padding:5px 2px;border-radius:12px;display:flex;flex-direction:column;align-items:center;line-height:1.3;color:var(--muted);min-height:48px}
+nav svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;margin-bottom:2px}
+nav button.on{color:var(--brand);background:var(--gold-bg)}
+@media (prefers-color-scheme:dark){nav button.on{color:var(--gold)}}
+#toast{position:fixed;top:calc(10px + env(safe-area-inset-top,0px));inset-inline:12px;max-width:450px;margin:0 auto;background:var(--ink);color:var(--bg);border-radius:16px;padding:11px 16px;font-weight:500;font-size:.9rem;transform:translateY(-150%);transition:transform .35s;z-index:9;box-shadow:var(--sh)}
 #toast.show{transform:none}
-.floors{display:flex;gap:8px;margin-bottom:10px}
-.floors button{flex:1;border:1px solid var(--line);background:transparent}
-.floors button.on{background:var(--brand);color:var(--brand-ink);border-color:var(--brand)}
-svg{width:100%;height:auto;display:block}
+.floors{display:flex;gap:8px;margin-bottom:12px}
+.floors button{flex:1;border:1px solid var(--line);background:transparent;font-size:.85rem}
+.floors button.on{background:var(--brand);color:#fff;border-color:var(--brand)}
+.dirbox{background:var(--gold-bg);border-radius:12px;padding:10px 12px;font-size:.88rem;margin-bottom:12px}
+svg.map{width:100%;height:auto;display:block}
 .room{fill:var(--bg);stroke:var(--line);stroke-width:2}
-.room.dest{fill:var(--now);stroke:var(--now)}
+.room.dest{fill:var(--gold);stroke:var(--gold)}
 .rt{fill:var(--ink);font-size:13px;text-anchor:middle;font-family:inherit}
-.chk{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--line)}
+.chk{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-bottom:1px solid var(--line)}
 .chk:last-child{border:0}
 .chk input{width:22px;height:22px;margin-top:4px;accent-color:var(--brand)}
-.chip{display:inline-block;background:var(--now-bg);border:1px solid var(--now);border-radius:20px;font-size:.72rem;padding:0 10px}
-.trk{display:flex;gap:6px;margin:8px 0}
+.tag{display:inline-block;background:var(--gold-bg);border:1px solid var(--gold);border-radius:20px;font-size:.7rem;padding:0 10px}
+.trk{display:flex;gap:6px;margin:8px 0 4px}
 .trk i{flex:1;height:6px;border-radius:6px;background:var(--line)}
 .trk i.f{background:var(--brand)}
 .row{display:flex;justify-content:space-between;align-items:center;gap:8px}
-.hb{display:grid;grid-template-columns:5.2rem 1fr 2rem;gap:8px;align-items:center;font-size:.85rem;margin:8px 0}
+.kp{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+.kp div{background:var(--bg);border-radius:12px;padding:8px;text-align:center}
+.kp b{display:block;font-size:1.1rem}.kp span{font-size:.68rem;color:var(--muted)}
+.hb{display:grid;grid-template-columns:4.6rem 1fr 1.8rem;gap:8px;align-items:center;font-size:.82rem;margin:8px 0}
 .hb div{height:14px;background:var(--line);border-radius:7px;overflow:hidden}
-.hb i{display:block;height:100%;background:var(--brand)}
-.hb.max i{background:var(--now)}
-.alert{background:var(--now-bg);border:1.5px solid var(--now);border-radius:12px;padding:10px 12px;font-size:.88rem;margin-top:10px}
-.kp{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.hb i{display:block;height:100%;background:var(--brand);border-radius:7px}
+.hb.max i{background:var(--gold)}
+.alert{background:var(--gold-bg);border:1.5px solid var(--gold);border-radius:14px;padding:10px 12px;font-size:.86rem;margin-top:10px}
+.wl{position:fixed;inset:0;z-index:20;background:radial-gradient(circle at 15% 0%,rgba(255,255,255,.18),transparent 50%),linear-gradient(160deg,var(--brand),var(--brand2));color:#fff;display:flex;flex-direction:column;justify-content:center;padding:calc(32px + env(safe-area-inset-top,0px)) 24px calc(32px + env(safe-area-inset-bottom,0px));transition:opacity .45s,visibility .45s}
+.wl.out{opacity:0;visibility:hidden}
+.wl>div{max-width:420px;width:100%;margin:0 auto}
+.wl .logo{background:rgba(255,255,255,.2);width:64px;height:64px;border-radius:20px;margin-bottom:20px}
+.wl .logo svg{width:34px;height:34px}
+.wl h1{font-size:2.1rem;margin:0 0 4px}
+.wl p{margin:0;opacity:.92}
+.wl ul{list-style:none;padding:0;margin:24px 0}
+.wl li{display:flex;gap:12px;align-items:center;margin-bottom:10px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.2);border-radius:16px;padding:10px 14px;font-size:.95rem}
+.wl li span{font-size:1.4rem}
+.wl button{background:#fff;color:#0A5C4C;width:100%;font-weight:700;font-size:1.05rem;min-height:52px}
+.ring{position:relative;width:112px;height:112px;margin:14px auto 0}
+.ring svg{width:100%;height:100%}
+.ring div{position:absolute;inset:0;display:grid;place-content:center;text-align:center;line-height:1.2}
+.ring b{font-size:1.9rem}.ring span{font-size:.66rem;opacity:.9}
+.stars{display:flex;gap:4px;justify-content:center;margin:6px 0}
+.stars button{background:none;font-size:2.2rem;color:var(--line);padding:0 4px;min-height:48px}
+.stars button.on{color:var(--gold)}
+#fin .tiles{margin:12px 0}
+#fin .tile{background:var(--bg);border-color:var(--line)}
+.fab{position:fixed;inset-inline-start:14px;bottom:calc(78px + env(safe-area-inset-bottom,0px));z-index:6;background:#C0392B;color:#fff;border-radius:30px;padding:8px 16px;font-weight:600;box-shadow:0 6px 18px rgba(192,57,43,.4)}
+.sheet{position:fixed;inset:0;z-index:15;background:rgba(0,0,0,.45);display:none;align-items:flex-end}
+.sheet.on{display:flex}
+.sheet>div{background:var(--surface);width:100%;max-width:480px;margin:0 auto;border-radius:22px 22px 0 0;padding:18px 16px calc(18px + env(safe-area-inset-bottom,0px))}
+.opt{display:flex;gap:12px;align-items:center;width:100%;text-align:start;background:var(--bg);margin-top:8px;font-size:.95rem}
+.opt span{font-size:1.3rem}
+.fam{display:flex;gap:8px;margin-bottom:12px;overflow-x:auto;padding-bottom:2px}
+.fam button{border:1px solid var(--line);background:var(--surface);border-radius:20px;white-space:nowrap;min-height:38px;font-size:.85rem;padding:4px 16px}
+.fam button.on{background:var(--brand);color:#fff;border-color:var(--brand)}
+.pv{font-size:.76rem;color:rgba(255,255,255,.88);text-align:center;margin:14px 0 0}
+.rx .log time{width:6.2rem;color:var(--ink);font-weight:600;font-size:.8rem}
+.leg{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;font-size:.74rem;color:var(--muted);margin-top:10px}
+.fq{margin-bottom:14px}.fl{font-weight:600;font-size:.9rem;margin-bottom:2px;display:block}.fl em{color:#C0392B;font-style:normal}
+.tg{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.tgb{border:1px solid var(--line);background:var(--bg);border-radius:20px;min-height:40px;padding:2px 14px;font-size:.85rem}
+.tgb.on{background:var(--brand);color:#fff;border-color:var(--brand)}
+textarea{width:100%;font:inherit;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:14px;padding:10px;resize:vertical;margin-top:6px}
+#frm .stars{justify-content:flex-start;margin:0}#frm .stars button{font-size:1.9rem;min-height:42px}
+.thk{text-align:center;padding:10px 0}
+.fd{display:flex;gap:12px;align-items:center;background:var(--bg);border-radius:16px;padding:12px;margin:10px 0 14px}
+.av{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;display:grid;place-items:center;font-weight:700;font-size:1.15rem;flex:none}
+.fp{display:flex;align-items:center;gap:10px;font-size:.76rem;color:var(--muted);margin-bottom:14px}
+.fp .bar{flex:1;margin:0;height:6px}
+.fq{border-top:1px solid var(--line);padding-top:12px}
+.nb{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--gold-bg);border:1px solid var(--gold);font-size:.72rem;margin-inline-end:8px;font-weight:600}
+.rl{display:block;font-size:.78rem;color:var(--brand);min-height:1.3em;font-weight:600}
+@media (prefers-color-scheme:dark){.rl{color:var(--gold)}}
+.cnt{font-size:.7rem;color:var(--muted);text-align:end}
+.sr{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px dashed var(--line);font-size:.86rem}
+.sr:last-child{border:0}.sr span{color:var(--muted)}
+.ok{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;display:grid;place-items:center;font-size:2rem;margin:0 auto 10px;animation:pop .45s}
+@keyframes pop{from{transform:scale(.3);opacity:0}to{transform:none;opacity:1}}
+button:disabled{opacity:.45;cursor:not-allowed}
 </style>
 </head>
 <body>
 <div id="toast" role="status"></div>
+<div class="wl" id="welcome"><div>
+  <div class="logo"><svg viewBox="0 0 24 24"><path d="M12 21.5s-6.5-5.4-6.5-11a6.5 6.5 0 0 1 13 0c0 5.6-6.5 11-6.5 11z"/><path d="M12 7.5v5.5M9.2 10.25h5.6"/></svg></div>
+  <h1>رحلتي</h1><p>رفيقك في كل خطوة داخل المستشفى</p>
+  <ul><li><span>⏱️</span>لا طوابير: اعرف دورك ووقت انتظارك</li><li><span>🧭</span>لا ضياع: خريطة توجّهك إلى كل قسم</li><li><span>🔔</span>لا نسيان: تذكيرات وتعليمات في وقتها</li></ul>
+  <button id="go">ابدأ رحلتك</button>
+  <p class="pv">🔒 بياناتك تظهر لك وحدك، ولا يطلع عليها إلا فريقك الطبي.</p>
+</div></div>
 <main>
-  <div class="top">
-    <h1>رحلتي 🏥</h1>
-    <button class="ghost sm" id="big" aria-pressed="false">تكبير الخط</button>
-  </div>
-  <p class="lead">رفيقك داخل المستشفى من الموعد إلى الخروج. جرّب الرحلة وتنقّل بين الأقسام من الشريط السفلي.</p>
+  <header>
+    <div class="logo"><svg viewBox="0 0 24 24"><path d="M12 21.5s-6.5-5.4-6.5-11a6.5 6.5 0 0 1 13 0c0 5.6-6.5 11-6.5 11z"/><path d="M12 7.5v5.5M9.2 10.25h5.6"/></svg></div>
+    <div><b>رحلتي</b><small>رفيقك في كل خطوة داخل المستشفى</small></div>
+    <div style="margin-inline-start:auto;display:flex;gap:6px"><button class="ghost sm" id="lang" aria-label="Language">EN</button><button class="ghost sm" id="big" aria-pressed="false">تكبير الخط</button></div>
+  </header>
 
   <section class="view on" id="v-journey">
+    <div class="fam" id="fam" aria-label="المرضى"></div>
+    <div class="greet"><div><span>مستشفى النخيل التخصصي</span><h1 id="gr"></h1></div></div>
+    <div class="hero" aria-live="polite">
+      <div class="chips"><span class="chip" id="c1"></span><span class="chip" id="c2"></span></div>
+      <div class="lab">المرحلة الحالية</div>
+      <h2 id="title"></h2><p id="desc"></p><div id="ring"></div>
+      <div class="tiles" id="stats"></div>
+    </div>
     <div class="card">
-      <div class="now" aria-live="polite"><h2 id="title"></h2><p id="desc"></p><div class="stats" id="stats"></div></div>
+      <div class="prog"><span id="pc"></span><span id="pp"></span></div>
       <div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"><i id="fill"></i></div>
       <ol id="list"></ol>
       <div class="btns"><button class="primary" id="next">المرحلة التالية</button><button class="ghost" id="reset">من البداية</button></div>
     </div>
+    <div class="card rx" id="rx" hidden><h2>تفاصيل وصفتك 💊</h2><p class="sub">مثال توضيحي وليست وصفة حقيقية</p>
+  <div class="log"><time>ميتفورمين 500 مجم</time><span>حبة مرتين يوميًا بعد الأكل</span></div>
+  <div class="log"><time>أوميبرازول 20 مجم</time><span>حبة صباحًا قبل الفطور بنصف ساعة</span></div>
+  <div class="alert">⚠️ اسأل الصيدلي قبل استخدامها مع أي أدوية أخرى.</div></div>
+    <div class="card" id="fin" hidden><h2>ملخص زيارتك 🎉</h2><p class="sub">شكرًا لثقتك، نتمنى لك الصحة والعافية</p>
+  <div class="tiles" style="grid-template-columns:repeat(3,1fr)"><div class="tile"><b>74 د</b><span>مدة الزيارة</span></div><div class="tile"><b>4</b><span>أقسام زرتها</span></div><div class="tile"><b>أسبوعان</b><span>المراجعة القادمة</span></div></div>
+  <h2 style="margin-top:14px">قيّم زيارتك 📝</h2><p class="sub">دقيقة وحدة تساعدنا نحسّن الخدمة</p><div id="frm"></div></div>
+    <div class="card"><h2>سجل الإشعارات</h2><p class="sub">كل ما يصلك أثناء الزيارة في مكان واحد</p><div id="logs"></div></div>
   </section>
 
   <section class="view" id="v-map">
-    <div class="card">
-      <h2>خريطة المستشفى</h2>
-      <p class="lead" id="dir"></p>
-      <div class="floors" id="floors"></div>
-      <svg id="svg" viewBox="0 0 320 200" role="img" aria-label="مخطط الدور"></svg>
-    </div>
+    <div class="card"><h2>خريطة المستشفى</h2><p class="sub">توجيه خطوة بخطوة إلى وجهتك الحالية</p>
+      <div class="dirbox" id="dir"></div><div class="floors" id="floors"></div>
+      <svg class="map" id="svg" viewBox="0 0 320 200" role="img" aria-label="مخطط الدور"></svg>
+      </div>
   </section>
 
   <section class="view" id="v-prep">
-    <div class="card">
-      <h2>قبل موعدك</h2>
-      <p class="lead">تصلك هذه التعليمات في الوقت المناسب، وتقدر تعلّم ما أنجزته.</p>
-      <div id="prep"></div>
-    </div>
+    <div class="card"><h2>قبل موعدك</h2><p class="sub">تصلك كل تعليمة في وقتها المناسب، وتقدر تعلّم ما أنجزته</p><div id="prep"></div></div>
   </section>
 
   <section class="view" id="v-res">
-    <div class="card">
-      <h2>نتائج الفحوصات</h2>
-      <p class="lead">تابع حالة كل فحص بدون ما تسأل في الاستقبال. زر التحديث للتجربة فقط.</p>
-      <div id="res"></div>
-    </div>
+    <div class="card"><h2>نتائج الفحوصات</h2><p class="sub">تابع حالة كل فحص بدون ما تراجع الاستقبال. زر «تحديث» للتجربة فقط.</p><div id="res"></div></div>
   </section>
 
   <section class="view" id="v-hos">
-    <div class="card">
-      <h2>لوحة المستشفى</h2>
-      <p class="lead">ما يراه الموظف: أين الزحمة الآن، وأي مرحلة تحتاج دعمًا.</p>
-      <div class="kp"><div class="stat"><b>132</b><span>مريض اليوم</span></div><div class="stat"><b>74 د</b><span>متوسط مدة الزيارة</span></div></div>
-      <div id="hos" style="margin-top:10px"></div>
-      <div class="alert" id="hosAlert"></div>
-    </div>
+    <div class="card"><h2>لوحة المستشفى</h2><p class="sub">ما يراه الموظف: أين الزحمة الآن، وأي مرحلة تحتاج دعمًا</p>
+      <div class="kp"><div><b>132</b><span>مريض اليوم</span></div><div><b>74 د</b><span>متوسط الزيارة</span></div><div><b>4.6/5</b><span>رضا المرضى</span></div></div>
+      <div id="hos"></div><div class="alert" id="hosAlert"></div></div>
   </section>
-  <p class="note">نموذج تجريبي للفكرة: البيانات افتراضية وليست مرتبطة بمستشفى فعلي.</p>
+  
 </main>
 
+<button class="fab" id="fab">🆘 مساعدة</button>
+<div class="sheet" id="sheet"><div><h2>كيف نقدر نساعدك؟</h2><p class="sub">سيصل طلبك لأقرب موظف. في الحالات الخطرة اتصل بالإسعاف 997.</p>
+<button class="opt" data-h="تم إبلاغ الاستقبال، وسيتصل بك موظف"><span>📞</span>اتصال بالاستقبال</button>
+<button class="opt" data-h="تم طلب كرسي متحرك، وسيصلك خلال دقائق"><span>♿</span>طلب كرسي متحرك</button>
+<button class="opt" data-h="تم طلب مرافق ليوصلك لوجهتك"><span>🤝</span>طلب مرافق</button>
+<button class="opt" data-h="تم تنبيه فريق الطوارئ"><span>🚨</span>حالة طارئة</button>
+<button class="opt ghost" data-h="" style="justify-content:center;margin-top:12px">إغلاق</button></div></div>
 <nav id="nav">
-  <button data-v="journey" class="on"><span>🧭</span>الرحلة</button>
-  <button data-v="map"><span>🗺️</span>الخريطة</button>
-  <button data-v="prep"><span>📋</span>التحضير</button>
-  <button data-v="res"><span>🧪</span>الفحوصات</button>
-  <button data-v="hos"><span>📊</span>المستشفى</button>
+  <button data-v="journey" class="on"><svg viewBox="0 0 24 24"><circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/></svg>الرحلة</button>
+  <button data-v="map"><svg viewBox="0 0 24 24"><path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3z"/><path d="M9 3v15M15 6v15"/></svg>الخريطة</button>
+  <button data-v="prep"><svg viewBox="0 0 24 24"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2M9 13l2 2 4-4"/></svg>التحضير</button>
+  <button data-v="res"><svg viewBox="0 0 24 24"><path d="M10 2v7.5L4 20a1 1 0 0 0 .9 1.5h14.2a1 1 0 0 0 .9-1.5L14 9.5V2M8.5 2h7M7 16h10"/></svg>الفحوصات</button>
+  <button data-v="hos"><svg viewBox="0 0 24 24"><path d="M3 3v18h18M7 14v4M12 8v10M17 11v7"/></svg>المستشفى</button>
 </nav>
 
 <script>
 var $=function(x){return document.getElementById(x)};
 var S=[
-{n:"الموعد",d:"موعدك اليوم الساعة 2:30 م مع د. سارة، عيادة الباطنية.",s:[["2:30 م","وقت الموعد"],["الدور 2","موقع العيادة"]],t:"📅 موعدك اليوم",f:"g",r:null,dir:"لما تصل، ادخل من المدخل الرئيسي في الدور الأرضي."},
-{n:"الوصول",d:"وصلت للمستشفى. توجّه إلى المدخل الرئيسي.",s:[["بوابة 1","أقرب مدخل"],["وقف قريب","مواقف الزوار"]],t:"📍 وصلت للمستشفى",f:"g",r:"ent",dir:"أنت عند المدخل. الاستقبال على يمينك."},
-{n:"التسجيل",d:"اضغط «تسجيل الحضور» على الشاشة أو من التطبيق. لا حاجة لطابور الاستقبال.",s:[["تم","تأكيد الهوية"],["1 دقيقة","وقت التسجيل"]],t:"✅ تم تسجيل حضورك",f:"g",r:"rec",dir:"سجّل حضورك عند الاستقبال ثم اركب المصعد للدور الثاني."},
-{n:"الانتظار",s:[],t:"⏳ الانتظار",q:true,f:2,r:"wait",dir:"اطلع بالمصعد للدور الثاني. منطقة الانتظار على يسار المصعد."},
-{n:"العيادة",d:"حان دورك. العيادة 214 في الدور الثاني، يمين المصعد.",s:[["214","رقم العيادة"],["الدور 2","يمين المصعد"]],t:"🩺 حان دورك",f:2,r:"c214",dir:"العيادة 214 على يمين المصعد."},
-{n:"الأشعة",d:"طلب الطبيب أشعة. توجّه للدور الأول، قسم الأشعة، وأظهر رمز الطلب.",s:[["الدور 1","قسم الأشعة"],["10 د","الانتظار المتوقع"]],t:"🩻 لديك أشعة",f:1,r:"rad",dir:"انزل للدور الأول. قسم الأشعة على يسار المصعد."},
-{n:"الصيدلية",d:"وصفتك قيد التجهيز، سنخبرك عندما تكون جاهزة.",s:[["8 د","وقت التجهيز"],["الدور الأرضي","موقع الصيدلية"]],t:"💊 وصفتك جاهزة للاستلام",f:"g",r:"ph",dir:"انزل للدور الأرضي. الصيدلية في آخر الممر."},
-{n:"الخروج",d:"انتهت زيارتك. موعد المراجعة بعد أسبوعين، وسنذكّرك قبله بيوم.",s:[["بعد أسبوعين","موعد المراجعة"],["تقييم","شاركنا رأيك"]],t:"👋 سلامتك",f:"g",r:null,dir:"المخرج الرئيسي في الدور الأرضي."}
+{n:"الموعد",e:"📅",h:"موعد اليوم 2:30 م",d:"موعدك اليوم الساعة 2:30 م مع د. سارة، عيادة الباطنية.",s:[["2:30 م","وقت الموعد"],["الدور 2","موقع العيادة"]],t:"📅 موعدك اليوم الساعة 2:30",f:"g",r:null,dir:"عند وصولك ادخل من المدخل الرئيسي في الدور الأرضي."},
+{n:"الوصول",e:"📍",h:"وصلت للمستشفى",d:"وصلت للمستشفى. توجّه إلى المدخل الرئيسي.",s:[["بوابة 1","أقرب مدخل"],["وقف قريب","مواقف الزوار"]],t:"📍 وصلت للمستشفى",f:"g",r:"ent",dir:"أنت عند المدخل. الاستقبال على يمينك."},
+{n:"التسجيل",e:"✅",h:"تم تسجيل الحضور",d:"سجّل حضورك من التطبيق أو الشاشة. لا حاجة لطابور الاستقبال.",s:[["تم","تأكيد الهوية"],["1 دقيقة","وقت التسجيل"]],t:"✅ تم تسجيل حضورك",f:"g",r:"rec",dir:"سجّل حضورك عند الاستقبال ثم اركب المصعد للدور الثاني."},
+{n:"الانتظار",e:"⏳",h:"في الانتظار",s:[],t:"⏳ الانتظار",q:true,f:2,r:"wait",dir:"اطلع بالمصعد للدور الثاني. منطقة الانتظار على يسار المصعد."},
+{n:"العيادة",e:"🩺",h:"حان دورك",d:"حان دورك. العيادة 214 في الدور الثاني، يمين المصعد.",s:[["214","رقم العيادة"],["الدور 2","يمين المصعد"]],t:"🩺 حان دورك، العيادة 214",f:2,r:"c214",dir:"العيادة 214 على يمين المصعد."},
+{n:"الأشعة",e:"🩻",h:"لديك أشعة",d:"طلب الطبيب أشعة. توجّه للدور الأول وأظهر رمز الطلب.",s:[["الدور 1","قسم الأشعة"],["10 د","الانتظار المتوقع"]],t:"🩻 لديك أشعة في الدور الأول",f:1,r:"rad",dir:"انزل للدور الأول. قسم الأشعة على يسار المصعد."},
+{n:"الصيدلية",e:"💊",h:"الوصفة جاهزة",d:"وصفتك قيد التجهيز، وسنخبرك عندما تكون جاهزة.",s:[["8 د","وقت التجهيز"],["الدور الأرضي","موقع الصيدلية"]],t:"💊 وصفتك جاهزة للاستلام",f:"g",r:"ph",dir:"انزل للدور الأرضي. الصيدلية في آخر الممر."},
+{n:"الخروج",e:"👋",h:"انتهت الزيارة",d:"انتهت زيارتك. موعد المراجعة بعد أسبوعين، وسنذكّرك قبله بيوم.",s:[["أسبوعين","موعد المراجعة"],["تقييم","شاركنا رأيك"]],t:"👋 سلامتك، انتهت زيارتك",f:"g",r:null,dir:"المخرج الرئيسي في الدور الأرضي."}
 ];
-var i=0,q=4,fl="g";
-
+var i=0,q=4,fl="g",L=[];
+function tm(n){var m=13*60+40+n*4,h=Math.floor(m/60);return (h>12?h-12:h)+":"+("0"+m%60).slice(-2)+(h>=12?" م":" ص")}
+function log(t){L.unshift([tm(L.length),t]);renderLog()}
+function renderLog(){$("logs").innerHTML=L.map(function(x){return '<div class="log"><time>'+x[0]+'</time><span>'+x[1]+'</span></div>'}).join("")}
 function toast(t){var e=$("toast");e.textContent=t;e.classList.add("show");clearTimeout(toast.h);toast.h=setTimeout(function(){e.classList.remove("show")},2600)}
 
+function ringSVG(m,p){var c=226.2;return '<div class="ring"><svg viewBox="0 0 90 90"><circle cx="45" cy="45" r="36" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="8"/><circle cx="45" cy="45" r="36" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round" stroke-dasharray="'+c+'" stroke-dashoffset="'+(c*(1-p)).toFixed(1)+'" transform="rotate(-90 45 45)" style="transition:stroke-dashoffset .6s"/></svg><div><b>'+m+'</b><span>دقيقة تقريبًا</span></div></div>'}
 function renderJourney(){
   var s=S[i],st=s.s.slice(),d=s.d;
   if(s.q){st=[[String(q),"مرضى أمامك"],[Math.max(q*4-1,1)+" د","الانتظار المتوقع"]];
     d=q>0?"أمامك "+q+" مرضى. تقدر تنتظر في المقهى وسنرسل لك إشعارًا قبل دورك.":"أنت التالي! توجّه للعيادة الآن."}
-  $("title").textContent=s.t;$("desc").textContent=d;
-  $("stats").innerHTML=st.map(function(x){return '<div class="stat"><b>'+x[0]+'</b><span>'+x[1]+'</span></div>'}).join("");
+  if(i===0){var pf=PF[pi];s.h="موعد اليوم "+pf.t;d="موعدك اليوم الساعة "+pf.t+" مع "+pf.d+"، "+pf.c+"."}
+  $("title").textContent=s.h;$("desc").textContent=d;
+  $("ring").innerHTML=(s.q&&q>0)?ringSVG(Math.max(q*4-1,1),(4-q)/4):"";
+  $("fin").hidden=i!==S.length-1;$("rx").hidden=i!==6;if(i<S.length-1)FS.on=false;else if(!FS.on)buildForm();
+  $("stats").innerHTML=st.map(function(x){return '<div class="tile"><b>'+x[0]+'</b><span>'+x[1]+'</span></div>'}).join("");
   $("list").innerHTML=S.map(function(x,k){var c=k<i?"done":k===i?"cur":"";
-    return '<li class="s '+c+'"><div class="dot">'+(k<i?"✓":k+1)+'</div><div><b>'+x.n+'</b></div></li>'}).join("");
-  $("fill").style.width=Math.round(i/(S.length-1)*100)+"%";
+    return '<li class="s '+c+'"><div class="dot">'+(k<i?"✓":x.e)+'</div><div><b>'+x.n+'</b></div></li>'}).join("");
+  var p=Math.round(i/(S.length-1)*100);
+  $("fill").style.width=p+"%";$("pc").textContent="المرحلة "+(i+1)+" من "+S.length;$("pp").textContent=p+"%";
   var b=$("next"),last=i===S.length-1;
   b.textContent=last?"انتهت الرحلة":(s.q&&q>0?"التالي في الدور":"المرحلة التالية");
   b.disabled=last;b.style.opacity=last?.5:1;
@@ -172,24 +268,33 @@ var R={g:[["ent","المدخل",10,130,90,60],["rec","الاستقبال",110,13
 1:[["rad","الأشعة",10,10,110,80],["lab","المختبر",200,10,110,80],["lift","المصعد",140,10,50,50]],
 2:[["wait","الانتظار",10,10,110,70],["c214","عيادة 214",200,10,110,70],["lift","المصعد",140,10,50,50]]};
 var FN={g:"الأرضي",1:"الأول",2:"الثاني"};
+R.g.push(["pray","المصلى",200,10,110,60]);R[1].push(["wc","دورات المياه",200,135,110,50]);R[2].push(["wc","دورات المياه",200,135,110,50]);
+var IC={ent:"🚪",rec:"🛎️",ph:"💊",cafe:"☕",lift:"🛗",rad:"🩻",lab:"🧪",wait:"🪑",c214:"🩺",wc:"🚻",pray:"🕌"};
+function mapExtra(s){
+ var rm=R[fl].filter(function(r){return r[0]===s.r})[0];
+ if(s.r&&s.f!==fl)return '<text class="rt" x="160" y="111" style="font-size:12px;opacity:.8">وجهتك في الدور '+FN[s.f]+'</text>';
+ if(!rm||rm[0]==="lift"||rm[0]==="ent")return '';
+ var A=fl==="g"?[55,162]:[165,66],cx=rm[2]+rm[4]/2,cy=rm[3]<90?rm[3]+rm[5]:rm[3];
+ return '<path d="M'+A[0]+' '+A[1]+'V107H'+cx+'V'+cy+'" fill="none" stroke="var(--brand)" stroke-width="3.5" stroke-dasharray="2 7" stroke-linecap="round"><animate attributeName="stroke-dashoffset" from="18" to="0" dur="1s" repeatCount="indefinite"/></path><circle cx="'+A[0]+'" cy="'+A[1]+'" r="6" fill="var(--brand)" stroke="#fff" stroke-width="2"/>';
+}
 function renderMap(){
-  var s=S[i];$("dir").textContent=s.dir;
-  $("floors").innerHTML=["2",1,"g"].map(function(f){f=f==="2"?2:f;return '<button data-f="'+f+'" class="'+(String(f)===String(fl)?"on":"")+'">'+FN[f]+(s.f===f?" ●":"")+'</button>'}).join("");
-  $("svg").innerHTML='<rect x="2" y="2" width="316" height="196" rx="14" fill="none" stroke="var(--line)" stroke-width="2"/>'+
+  var s=S[i];$("dir").textContent="🧭 "+s.dir;
+  $("floors").innerHTML=[2,1,"g"].map(function(f){return '<button data-f="'+f+'" class="'+(String(f)===String(fl)?"on":"")+'">الدور '+FN[f]+(s.f===f?" ●":"")+'</button>'}).join("");
+  $("svg").innerHTML='<rect x="2" y="2" width="316" height="196" rx="14" fill="none" stroke="var(--line)" stroke-width="2"/><rect x="10" y="90" width="300" height="34" rx="8" fill="var(--line)" opacity=".55"/><rect x="155" y="58" width="20" height="34" fill="var(--line)" opacity=".55"/>'+
     R[fl].map(function(r){var d=r[0]===s.r&&s.f===fl;
-      return '<rect class="room'+(d?" dest":"")+'" x="'+r[2]+'" y="'+r[3]+'" width="'+r[4]+'" height="'+r[5]+'" rx="8"/><text class="rt" x="'+(r[2]+r[4]/2)+'" y="'+(r[3]+r[5]/2+5)+'">'+r[1]+(d?" ←":"")+'</text>'}).join("");
+      return '<rect class="room'+(d?" dest":"")+'" x="'+r[2]+'" y="'+r[3]+'" width="'+r[4]+'" height="'+r[5]+'" rx="8"/><text class="rt" x="'+(r[2]+r[4]/2)+'" y="'+(r[3]+r[5]/2+(IC[r[0]]?10:5))+'">'+r[1]+'</text>'+(IC[r[0]]?'<text x="'+(r[2]+r[4]/2)+'" y="'+(r[3]+r[5]/2-5)+'" font-size="18" text-anchor="middle">'+IC[r[0]]+'</text>':'')}).join("")+mapExtra(s);
 }
 $("floors").onclick=function(e){var f=e.target.getAttribute("data-f");if(f){fl=f==="g"?"g":+f;renderMap()}};
 
 var P=[["صيام 8 ساعات قبل تحليل الدم","قبل الموعد بـ 8 ساعات"],["أحضر الهوية الوطنية وتقارير الزيارات السابقة","قبل الموعد بيوم"],["احضر قبل موعدك بـ 20 دقيقة","قبل الموعد بـ 20 د"],["اكتب أسماء الأدوية التي تستخدمها حاليًا","قبل الموعد بيوم"]];
-$("prep").innerHTML=P.map(function(p){return '<label class="chk"><input type="checkbox"><div><div>'+p[0]+'</div><span class="chip">'+p[1]+'</span></div></label>'}).join("");
+$("prep").innerHTML=P.map(function(p){return '<label class="chk"><input type="checkbox"><div><div>'+p[0]+'</div><span class="tag">'+p[1]+'</span></div></label>'}).join("");
 
 var T=[{n:"تحليل الدم",s:2},{n:"أشعة الصدر",s:0},{n:"تحليل السكر",s:1}],TS=["تم استلام الفحص","قيد الإجراء","النتيجة جاهزة"];
 function renderRes(){
   $("res").innerHTML=T.map(function(t,k){
-    return '<div class="chk"><div style="flex:1"><div class="row"><b>'+t.n+'</b>'+(t.s<2?'<button class="ghost sm" data-t="'+k+'">تحديث</button>':'<span class="chip">جاهزة</span>')+'</div><div class="trk"><i class="f"></i><i class="'+(t.s>=1?"f":"")+'"></i><i class="'+(t.s>=2?"f":"")+'"></i></div><span style="font-size:.85rem;color:var(--muted)">'+TS[t.s]+'</span></div></div>'}).join("");
+    return '<div class="chk"><div style="flex:1"><div class="row"><b>'+t.n+'</b>'+(t.s<2?'<button class="ghost sm" data-t="'+k+'">تحديث</button>':'<span class="tag">جاهزة ✓</span>')+'</div><div class="trk"><i class="f"></i><i class="'+(t.s>=1?"f":"")+'"></i><i class="'+(t.s>=2?"f":"")+'"></i></div><span style="font-size:.82rem;color:var(--muted)">'+TS[t.s]+'</span></div></div>'}).join("");
 }
-$("res").onclick=function(e){var k=e.target.getAttribute("data-t");if(k!==null){T[k].s++;if(T[k].s===2)toast("🧪 نتيجة "+T[k].n+" جاهزة");renderRes()}};
+$("res").onclick=function(e){var k=e.target.getAttribute("data-t");if(k!==null){T[k].s++;if(T[k].s===2){toast("🧪 نتيجة "+T[k].n+" جاهزة");log("🧪 نتيجة "+T[k].n+" جاهزة")}renderRes()}};
 
 var H=[["التسجيل",6],["الانتظار",14],["العيادة",5],["الأشعة",9],["الصيدلية",19]],HM={2:0,3:1,4:2,5:3,6:4};
 function renderHos(){
@@ -200,16 +305,55 @@ function renderHos(){
 
 function all(){renderJourney();renderMap();renderHos()}
 $("next").onclick=function(){
-  if(S[i].q&&q>0){q--;if(q===1)toast("🔔 باقي مريض واحد قبل دورك")}
-  else if(i<S.length-1){i++;toast(S[i].t);fl=S[i].f}
+  if(S[i].q&&q>0){q--;if(q===1){toast("🔔 باقي مريض واحد قبل دورك");log("🔔 باقي مريض واحد قبل دورك")}}
+  else if(i<S.length-1){i++;toast(S[i].t);log(S[i].t);fl=S[i].f}
   all()};
-$("reset").onclick=function(){i=0;q=4;fl="g";all()};
+$("reset").onclick=function(){i=0;q=4;fl="g";L=[];log(S[0].t);all()};
 $("nav").onclick=function(e){var b=e.target.closest("button");if(!b)return;
   [].forEach.call(document.querySelectorAll(".view"),function(v){v.classList.remove("on")});
   [].forEach.call($("nav").children,function(x){x.classList.remove("on")});
   $("v-"+b.getAttribute("data-v")).classList.add("on");b.classList.add("on");window.scrollTo(0,0)};
 $("big").onclick=function(){var on=document.documentElement.classList.toggle("big");this.setAttribute("aria-pressed",on);this.textContent=on?"خط عادي":"تكبير الخط"};
-all();renderRes();
+var FS={on:false},RL=["","سيئ","مقبول","جيد","جيد جدًا","ممتاز"],FQ=[["g","تجربتك العامة في المستشفى"],["d","تقييم الطبيب"],["w","وقت الانتظار"],["c","نظافة المكان وراحته"]],FT=["اهتمام بالمريض","وضوح الشرح","احترام الوقت","حسن التعامل"],FV={};
+function fprog(){var n=0;["g","d","w","c"].forEach(function(k){if(FV[k])n++});$("fpt").textContent=n+" من 4 أسئلة";$("fpb").style.width=n*25+"%";$("sb").disabled=!(FV.g&&FV.d)}
+function buildForm(){FS.on=true;FV={g:0,d:0,w:0,c:0,t:[],rec:null};var p=PF[pi],h='<div class="fd"><div class="av">'+p.d.replace("د. ","").charAt(0)+'</div><div><b>'+p.d+'</b><small style="display:block;color:var(--muted)">'+p.c+' · زيارة اليوم</small></div></div><div class="fp"><span id="fpt"></span><div class="bar"><i id="fpb"></i></div></div>';
+ FQ.forEach(function(q,k){h+='<div class="fq"><span class="fl"><b class="nb">'+(k+1)+'</b>'+q[1]+(k<2?' <em>*</em>':'')+'</span><div class="stars" data-q="'+q[0]+'">'+[1,2,3,4,5].map(function(n){return '<button type="button" data-n="'+n+'" aria-label="'+n+'">★</button>'}).join("")+'</div><small class="rl" id="rl-'+q[0]+'"></small></div>'});
+ h+='<div class="fq"><span class="fl"><b class="nb">5</b>وش أعجبك في الطبيب؟</span><div class="tg">'+FT.map(function(t,k){return '<button type="button" class="tgb" data-t="'+k+'">'+t+'</button>'}).join("")+'</div></div>';
+ h+='<div class="fq"><span class="fl"><b class="nb">6</b>هل توصي بالمستشفى لغيرك؟</span><div class="tg"><button type="button" class="tgb" data-r="1">نعم 👍</button><button type="button" class="tgb" data-r="0">لا 👎</button></div></div>';
+ h+='<div class="fq"><label class="fl" for="cm"><b class="nb">7</b>ملاحظاتك (اختياري)</label><textarea id="cm" rows="3" maxlength="300" placeholder="اكتب ملاحظتك هنا..."></textarea><div class="cnt" id="cnt">0 / 300</div></div><button class="primary" id="sb" style="width:100%" disabled>إرسال التقييم</button><p class="sub" style="text-align:center;margin:8px 0 0">الحقول المعلّمة بـ * مطلوبة</p>';
+ $("frm").innerHTML=h;fprog()}
+$("frm").oninput=function(e){if(e.target.id==="cm")$("cnt").textContent=e.target.value.length+" / 300"};
+$("frm").onclick=function(e){var t=e.target,st=t.closest(".stars");
+ if(st&&t.getAttribute("data-n")){var n=+t.getAttribute("data-n"),q=st.getAttribute("data-q");FV[q]=n;[].forEach.call(st.children,function(b,k){b.classList.toggle("on",k<n)});$("rl-"+q).textContent=n+" / 5 · "+RL[n];fprog();return}
+ if(t.hasAttribute("data-t")){var k=+t.getAttribute("data-t"),ix=FV.t.indexOf(k);if(ix<0)FV.t.push(k);else FV.t.splice(ix,1);t.classList.toggle("on")}
+ if(t.hasAttribute("data-r")){FV.rec=t.getAttribute("data-r");[].forEach.call(t.parentNode.children,function(b){b.classList.toggle("on",b===t)})}
+ if(t.id==="sb"&&!t.disabled){var r=function(a,b){return '<div class="sr"><span>'+a+'</span><b>'+b+'</b></div>'},sc=function(v){return v+" / 5 · "+RL[v]};
+  $("frm").innerHTML='<div class="thk"><div class="ok">✓</div><h2>شكرًا لك، وصل تقييمك</h2><p class="sub">رأيك يساعدنا نتحسن</p></div>'+r("رقم المرجع","RH-"+(Math.floor(Math.random()*90000)+10000))+r("تجربتك العامة",sc(FV.g))+r("الطبيب ("+PF[pi].d+")",sc(FV.d))+(FV.w?r("وقت الانتظار",sc(FV.w)):"")+(FV.c?r("نظافة المكان",sc(FV.c)):"")+(FV.rec!==null?r("التوصية",FV.rec==="1"?"أوصي بالمستشفى":"لا أوصي"):"");
+  toast("💚 شكرًا لتقييمك");log("⭐ أرسلت تقييم الزيارة")}};
+
+$("go").onclick=function(){$("welcome").classList.add("out")};
+var PF=[{n:"عبدالله",t:"2:30 م",d:"د. سارة",c:"عيادة الباطنية",l:"أنا"},{n:"فاطمة (الوالدة)",t:"4:00 م",d:"د. خالد",c:"عيادة العظام",l:"الوالدة"},{n:"سعد (ابني)",t:"5:15 م",d:"د. ليلى",c:"عيادة الأطفال",l:"سعد"}],pi=0;
+function setPF(){var p=PF[pi];$("gr").textContent="أهلًا، "+p.n+" 👋";$("c1").textContent="🕑 "+p.t;$("c2").textContent=p.d+" · "+p.c;S[0].t="📅 موعدك اليوم الساعة "+p.t;
+  $("fam").innerHTML=PF.map(function(x,k){return '<button data-k="'+k+'" class="'+(k===pi?"on":"")+'">'+x.l+'</button>'}).join("")}
+$("fam").onclick=function(e){var k=e.target.getAttribute("data-k");if(k===null)return;pi=+k;i=0;q=4;fl="g";L=[];setPF();log(S[0].t);all();toast("تم التبديل إلى "+PF[pi].n)};
+$("fab").onclick=function(){$("sheet").classList.add("on")};
+$("sheet").onclick=function(e){var o=e.target.closest("[data-h]");if(o){var m=o.getAttribute("data-h");if(m){toast("✅ "+m);log("🆘 "+m)}}if(o||e.target===this)this.classList.remove("on")};
+setPF();
+log(S[0].t);all();renderRes();
+var LG="ar",TT=document.title,TD={"رحلتي – رفيقك داخل المستشفى":"Rehlati – Your companion at the hospital","رحلتي":"Rehlati","رفيقك في كل خطوة داخل المستشفى":"Your companion at every step inside the hospital","لا طوابير: اعرف دورك ووقت انتظارك":"No queues: know your turn and wait time","لا ضياع: خريطة توجّهك إلى كل قسم":"No getting lost: a map guides you to every department","لا نسيان: تذكيرات وتعليمات في وقتها":"No forgetting: reminders and instructions on time","ابدأ رحلتك":"Start your journey","بياناتك تظهر لك وحدك، ولا يطلع عليها إلا فريقك الطبي.":"Your data is visible only to you and your care team.","تكبير الخط":"Larger text","المرضى":"Patients","مستشفى النخيل التخصصي":"Al Nakheel Specialist Hospital","المرحلة الحالية":"Current stage","المرحلة التالية":"Next stage","من البداية":"Start over","تفاصيل وصفتك":"Your prescription details","مثال توضيحي وليست وصفة حقيقية":"Illustrative example, not a real prescription","ميتفورمين":"Metformin","مجم":"mg","حبة مرتين يوميًا بعد الأكل":"1 tablet twice daily after meals","أوميبرازول":"Omeprazole","حبة صباحًا قبل الفطور بنصف ساعة":"1 tablet in the morning, 30 minutes before breakfast","اسأل الصيدلي قبل استخدامها مع أي أدوية أخرى.":"Ask the pharmacist before using them with any other medication.","ملخص زيارتك":"Visit summary","شكرًا لثقتك، نتمنى لك الصحة والعافية":"Thank you for your trust. We wish you good health.","مدة الزيارة":"Visit duration","أقسام زرتها":"Departments visited","أسبوعان":"2 weeks","المراجعة القادمة":"Next follow-up","قيّم زيارتك":"Rate your visit","دقيقة وحدة تساعدنا نحسّن الخدمة":"One minute helps us improve our service","سجل الإشعارات":"Notification log","كل ما يصلك أثناء الزيارة في مكان واحد":"Everything you receive during your visit in one place","خريطة المستشفى":"Hospital map","توجيه خطوة بخطوة إلى وجهتك الحالية":"Step-by-step guidance to your current destination","مخطط الدور":"Floor plan","قبل موعدك":"Before your appointment","تصلك كل تعليمة في وقتها المناسب، وتقدر تعلّم ما أنجزته":"Each instruction reaches you at the right time, and you can mark what you've done","نتائج الفحوصات":"Test results","تابع حالة كل فحص بدون ما تراجع الاستقبال. زر «تحديث» للتجربة فقط.":"Track each test without asking at reception. The “Update” button is for demo only.","لوحة المستشفى":"Hospital dashboard","ما يراه الموظف: أين الزحمة الآن، وأي مرحلة تحتاج دعمًا":"What staff see: where it's crowded now and which stage needs support","مريض اليوم":"Patients today","متوسط الزيارة":"Avg. visit","رضا المرضى":"Patient satisfaction","مساعدة":"Help","كيف نقدر نساعدك؟":"How can we help you?","سيصل طلبك لأقرب موظف. في الحالات الخطرة اتصل بالإسعاف":"Your request goes to the nearest staff member. In emergencies, call the ambulance:","تم إبلاغ الاستقبال، وسيتصل بك موظف":"Reception has been notified and a staff member will call you","اتصال بالاستقبال":"Call reception","تم طلب كرسي متحرك، وسيصلك خلال دقائق":"A wheelchair has been requested and will reach you in minutes","طلب كرسي متحرك":"Request a wheelchair","تم طلب مرافق ليوصلك لوجهتك":"An escort has been requested to take you to your destination","طلب مرافق":"Request an escort","تم تنبيه فريق الطوارئ":"The emergency team has been alerted","حالة طارئة":"Emergency","إغلاق":"Close","الرحلة":"Journey","الخريطة":"Map","التحضير":"Prepare","الفحوصات":"Tests","المستشفى":"Hospital","الموعد":"Appointment","موعد اليوم":"Today's appointment","موعدك اليوم الساعة":"Your appointment today is at","م مع د. سارة، عيادة الباطنية.":"PM with Dr. Sarah, Internal Medicine Clinic.","وقت الموعد":"Appointment time","الدور":"Floor","موقع العيادة":"Clinic location","عند وصولك ادخل من المدخل الرئيسي في الدور الأرضي.":"When you arrive, enter through the main entrance on the ground floor.","الوصول":"Arrival","وصلت للمستشفى":"You've arrived at the hospital","وصلت للمستشفى. توجّه إلى المدخل الرئيسي.":"You've arrived at the hospital. Head to the main entrance.","بوابة":"Gate","أقرب مدخل":"Nearest entrance","وقف قريب":"Nearby parking","مواقف الزوار":"Visitor parking","أنت عند المدخل. الاستقبال على يمينك.":"You're at the entrance. Reception is on your right.","التسجيل":"Check-in","تم تسجيل الحضور":"Checked in","سجّل حضورك من التطبيق أو الشاشة. لا حاجة لطابور الاستقبال.":"Check in from the app or the screen. No need to queue at reception.","تم":"Done","تأكيد الهوية":"ID verification","دقيقة":"minute","وقت التسجيل":"Check-in time","تم تسجيل حضورك":"You're checked in","سجّل حضورك عند الاستقبال ثم اركب المصعد للدور الثاني.":"Check in at reception, then take the elevator to floor 2.","الانتظار":"Waiting","في الانتظار":"Waiting","اطلع بالمصعد للدور الثاني. منطقة الانتظار على يسار المصعد.":"Take the elevator to floor 2. The waiting area is on the left of the elevator.","العيادة":"Clinic","حان دورك":"It's your turn","حان دورك. العيادة":"It's your turn. Clinic","في الدور الثاني، يمين المصعد.":"on floor 2, to the right of the elevator.","رقم العيادة":"Clinic no.","يمين المصعد":"Right of the elevator","حان دورك، العيادة":"It's your turn, Clinic","على يمين المصعد.":"to the right of the elevator.","الأشعة":"Radiology","لديك أشعة":"You have an X-ray","طلب الطبيب أشعة. توجّه للدور الأول وأظهر رمز الطلب.":"The doctor requested an X-ray. Go to floor 1 and show the request code.","قسم الأشعة":"Radiology dept.","الانتظار المتوقع":"Expected wait","لديك أشعة في الدور الأول":"You have an X-ray on floor 1","انزل للدور الأول. قسم الأشعة على يسار المصعد.":"Go down to floor 1. Radiology is on the left of the elevator.","الصيدلية":"Pharmacy","الوصفة جاهزة":"Prescription ready","وصفتك قيد التجهيز، وسنخبرك عندما تكون جاهزة.":"Your prescription is being prepared, and we'll let you know when it's ready.","وقت التجهيز":"Preparation time","الدور الأرضي":"Ground floor","موقع الصيدلية":"Pharmacy location","وصفتك جاهزة للاستلام":"Your prescription is ready for pickup","انزل للدور الأرضي. الصيدلية في آخر الممر.":"Go down to the ground floor. The pharmacy is at the end of the corridor.","الخروج":"Exit","انتهت الزيارة":"Visit complete","انتهت زيارتك. موعد المراجعة بعد أسبوعين، وسنذكّرك قبله بيوم.":"Your visit is over. Your follow-up is in two weeks, and we'll remind you a day before.","أسبوعين":"2 weeks","موعد المراجعة":"Follow-up appointment","تقييم":"Rating","شاركنا رأيك":"Share your opinion","سلامتك، انتهت زيارتك":"Take care, your visit is over","المخرج الرئيسي في الدور الأرضي.":"The main exit is on the ground floor.","دقيقة تقريبًا":"min approx.","مرضى أمامك":"Patients ahead","أمامك":"You have","مرضى. تقدر تنتظر في المقهى وسنرسل لك إشعارًا قبل دورك.":"patients ahead. You can wait in the café and we'll notify you before your turn.","أنت التالي! توجّه للعيادة الآن.":"You're next! Head to the clinic now.","مع":"with","المرحلة":"Stage","من":"of","انتهت الرحلة":"Journey complete","التالي في الدور":"Next in line","المدخل":"Entrance","الاستقبال":"Reception","المقهى":"Café","المصعد":"Elevator","المختبر":"Lab","عيادة":"Clinic","الأرضي":"the ground floor","الأول":"floor 1","الثاني":"floor 2","المصلى":"Prayer room","دورات المياه":"Restrooms","وجهتك في الدور":"Your destination is on","صيام":"Fast for","ساعات قبل تحليل الدم":"hours before the blood test","قبل الموعد بـ":"Before the appointment:","ساعات":"hours","أحضر الهوية الوطنية وتقارير الزيارات السابقة":"Bring your national ID and previous visit reports","قبل الموعد بيوم":"1 day before","احضر قبل موعدك بـ":"Arrive","اكتب أسماء الأدوية التي تستخدمها حاليًا":"Write down the medications you currently use","تحليل الدم":"Blood test","أشعة الصدر":"Chest X-ray","تحليل السكر":"Glucose test","تم استلام الفحص":"Test received","قيد الإجراء":"In progress","النتيجة جاهزة":"Result ready","تحديث":"Update","جاهزة":"ready","نتيجة":"Result:","زحمة في":"Crowding in","مريض، والانتظار المتوقع نحو":"patients, expected wait about","دقيقة. يُقترح تحويل موظف دعم إلى هذا القسم.":"minutes. Suggest sending a support staff member to this department.","يشمل مريضنا التجريبي)":"includes our demo patient)","باقي مريض واحد قبل دورك":"One patient left before your turn","خط عادي":"Normal text","سيئ":"Poor","مقبول":"Fair","جيد":"Good","جيد جدًا":"Very good","ممتاز":"Excellent","تجربتك العامة في المستشفى":"Your overall experience at the hospital","تقييم الطبيب":"Rate the doctor","وقت الانتظار":"Waiting time","نظافة المكان وراحته":"Cleanliness and comfort","اهتمام بالمريض":"Cared for the patient","وضوح الشرح":"Clear explanation","احترام الوقت":"Respected my time","حسن التعامل":"Good manner","أسئلة":"questions","د.":"Dr.","زيارة اليوم":"Today's visit","وش أعجبك في الطبيب؟":"What did you like about the doctor?","هل توصي بالمستشفى لغيرك؟":"Would you recommend the hospital to others?","نعم":"Yes","لا":"No","ملاحظاتك (اختياري)":"Your comments (optional)","اكتب ملاحظتك هنا...":"Write your comment here...","إرسال التقييم":"Submit rating","الحقول المعلّمة بـ":"Fields marked with","مطلوبة":"are required","شكرًا لك، وصل تقييمك":"Thank you, your rating was received","رأيك يساعدنا نتحسن":"Your opinion helps us improve","رقم المرجع":"Reference no.","تجربتك العامة":"Overall experience","الطبيب (":"Doctor (","نظافة المكان":"Cleanliness","التوصية":"Recommendation","أوصي بالمستشفى":"I recommend the hospital","لا أوصي":"I don't recommend it","شكرًا لتقييمك":"Thank you for your rating","أرسلت تقييم الزيارة":"You submitted your visit rating","عبدالله":"Abdullah","د. سارة":"Dr. Sarah","عيادة الباطنية":"Internal Medicine Clinic","أنا":"Me","فاطمة (الوالدة)":"Fatima (Mother)","د. خالد":"Dr. Khalid","عيادة العظام":"Orthopedics Clinic","الوالدة":"Mother","سعد (ابني)":"Saad (my son)","د. ليلى":"Dr. Layla","عيادة الأطفال":"Pediatrics Clinic","سعد":"Saad","أهلًا،":"Hello,","تم التبديل إلى":"Switched to","الدور الأول":"Floor 1","الدور الثاني":"Floor 2"},TK=Object.keys(TD).sort(function(a,b){return b.length-a.length}),OR=new WeakMap(),AV={"س":"S","خ":"K","ل":"L"},AR=/[\u0621-\u064A]/;
+function trs(s){s=s.replace(/قبل الموعد بـ\s*(\d+)\s*ساعات/g,"$1 hours before").replace(/قبل الموعد بـ\s*(\d+)\s*د(?![\u0621-\u064A])/g,"$1 min before").replace(/احضر قبل موعدك بـ\s*(\d+)\s*دقيقة/g,"Arrive $1 minutes before your appointment").replace(/صيام\s*(\d+)\s*ساعات قبل تحليل الدم/g,"Fast for $1 hours before the blood test").replace(/(\d)\s*م(?![\u0621-\u064A])/g,"$1 PM").replace(/(\d)\s*ص(?![\u0621-\u064A])/g,"$1 AM").replace(/(\d)\s*د(?![\u0621-\u064A])/g,"$1 min");
+ for(var k=0;k<TK.length;k++)if(s.indexOf(TK[k])>-1)s=s.split(TK[k]).join(TD[TK[k]]);return s.replace(/،/g,",").replace(/؟/g,"?")}
+function wk(n){var w=document.createTreeWalker(n,NodeFilter.SHOW_TEXT),a=[],x;while(x=w.nextNode())a.push(x);return a}
+function tn(x){var v=x.nodeValue;if(!AR.test(v))return;var t=AV[v.trim()]||trs(v);if(t!==v){OR.set(x,v);x.nodeValue=t}}
+function ta(r){if(!r.querySelectorAll)return;[].forEach.call(r.querySelectorAll("[placeholder],[aria-label]"),function(e){["placeholder","aria-label"].forEach(function(a){var v=e.getAttribute(a);if(v&&AR.test(v)){e.setAttribute("data-o-"+a,v);e.setAttribute(a,trs(v))}})})}
+var MOC={childList:true,subtree:true,characterData:true},MO=new MutationObserver(function(ms){if(LG!=="en")return;MO.disconnect();ms.forEach(function(m){if(m.type==="characterData")tn(m.target);else[].forEach.call(m.addedNodes,function(n){if(n.nodeType===3)tn(n);else if(n.nodeType===1){wk(n).forEach(tn);ta(n)}})});MO.observe(document.body,MOC)});
+function setLang(l){LG=l;var h=document.documentElement;h.lang=l;h.dir=l==="en"?"ltr":"rtl";MO.disconnect();
+ if(l==="en"){wk(document.body).forEach(tn);ta(document.body);document.title=trs(TT);$("lang").textContent="عربي";MO.observe(document.body,MOC)}
+ else{wk(document.body).forEach(function(x){if(OR.has(x)){x.nodeValue=OR.get(x);OR.delete(x)}});[].forEach.call(document.querySelectorAll("[data-o-placeholder],[data-o-aria-label]"),function(e){["placeholder","aria-label"].forEach(function(a){if(e.hasAttribute("data-o-"+a))e.setAttribute(a,e.getAttribute("data-o-"+a))})});document.title=TT;$("lang").textContent="EN"}
+ try{localStorage.setItem("rl",l)}catch(e){}}
+$("lang").onclick=function(){setLang(LG==="en"?"ar":"en")};
+try{if(localStorage.getItem("rl")==="en")setLang("en")}catch(e){}
+
 </script>
 </body>
 </html>
